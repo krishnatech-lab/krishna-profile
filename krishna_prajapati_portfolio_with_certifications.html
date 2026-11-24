@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Prajapati | Software Engineer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0d9488', // Teal-600
+                        secondary: '#4f46e5', // Indigo-600
+                        darkBg: '#0f172a', // Slate-900
+                        cardBg: '#1e293b' // Slate-800
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+        }
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+            border: 2px solid #0d9488;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+        /* Certificate Card Subtle Animation */
+        .cert-card {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cert-card:hover {
+            transform: translateY(-6px);
+        }
+    </style>
+</head>
+<body class="text-slate-100 overflow-x-hidden">
+
+    <!-- Navbar Section -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#0f172a]/90 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-2 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/30 group-hover:scale-105 transition-transform">
+                    KP
+                </div>
+                <span class="text-xl font-bold tracking-wider bg-gradient-to-r from-white via-slate-200 to-teal-400 bg-clip-text text-transparent">Krishna Prajapati</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#home" class="text-slate-300 hover:text-white hover:border-b-2 hover:border-primary pb-1 transition-all">Home</a>
+                <a href="#about" class="text-slate-300 hover:text-white hover:border-b-2 hover:border-primary pb-1 transition-all">About</a>
+                <a href="#skills" class="text-slate-300 hover:text-white hover:border-b-2 hover:border-primary pb-1 transition-all">Skills</a>
+                <a href="#achievements" class="text-slate-300 hover:text-white hover:border-b-2 hover:border-primary pb-1 transition-all">Projects</a>
+                <a href="#certifications" class="text-slate-300 hover:text-white hover:border-b-2 hover:border-primary pb-1 transition-all flex items-center gap-1.5">
+                    <span>Certifications</span>
+                    <span class="px-1.5 py-0.5 text-[10px] font-bold bg-teal-500/20 text-teal-400 border border-teal-500/30 rounded-full">13</span>
+                </a>
+                <a href="#contact" class="text-slate-300 hover:text-white hover:border-b-2 hover:border-primary pb-1 transition-all">Contact</a>
+            </nav>
+
+            <!-- CTA Desktop Button -->
+            <div class="hidden md:block">
+                <a href="#contact" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-sm font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-teal-500/20">
+                    Get In Touch
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none focus:text-white" aria-label="Toggle Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0f172a] border-b border-slate-800 transition-all duration-300">
+            <div class="px-4 pt-2 pb-6 space-y-3 flex flex-col items-start">
+                <a href="#home" class="mobile-link text-slate-300 hover:text-white py-2 w-full text-left text-lg border-b border-slate-800/50">Home</a>
+                <a href="#about" class="mobile-link text-slate-300 hover:text-white py-2 w-full text-left text-lg border-b border-slate-800/50">About</a>
+                <a href="#skills" class="mobile-link text-slate-300 hover:text-white py-2 w-full text-left text-lg border-b border-slate-800/50">Skills</a>
+                <a href="#achievements" class="mobile-link text-slate-300 hover:text-white py-2 w-full text-left text-lg border-b border-slate-800/50">Projects</a>
+                <a href="#certifications" class="mobile-link text-slate-300 hover:text-white py-2 w-full text-left text-lg border-b border-slate-800/50 flex items-center justify-between">
+                    <span>Certifications</span>
+                    <span class="px-2 py-0.5 text-xs font-bold bg-teal-500/20 text-teal-400 rounded-full">13</span>
+                </a>
+                <a href="#contact" class="mobile-link text-slate-300 hover:text-white py-2 w-full text-left text-lg">Contact</a>
+                <a href="#contact" class="mobile-link w-full text-center py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-semibold mt-4">Get In Touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+        <!-- Background Gradients -->
+        <div class="absolute top-1/4 left-1/10 w-96 h-96 bg-primary/15 rounded-full filter blur-[100px] pointer-events-none animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/10 w-96 h-96 bg-secondary/15 rounded-full filter blur-[100px] pointer-events-none animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Hero Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/50 text-xs sm:text-sm text-teal-300">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500"></span>
+                    </span>
+                    <span>Software Development & Engineering</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none">
+                    Hello, I'm <br class="hidden sm:inline">
+                    <span class="bg-gradient-to-r from-teal-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent">Krishna Prajapati</span>
+                </h1>
+                
+                <p class="text-xl sm:text-2xl font-semibold text-slate-300 flex items-center justify-center lg:justify-start gap-2">
+                    <i class="fa-solid fa-code text-teal-400"></i>
+                    <span>Software Engineer | Problem Solver | Code Enthusiast</span>
+                </p>
+                
+                <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    A passionate software engineer dedicated to crafting efficient, scalable, and user-friendly digital solutions. I thrive on solving complex technical challenges and building robust applications that make an impact.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                    <a href="#contact" class="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-bold hover:shadow-lg hover:shadow-teal-500/30 transition-all text-center flex items-center justify-center space-x-2 group">
+                        <span>Get In Touch</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#skills" class="px-8 py-4 rounded-xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/60 font-bold text-center transition-all flex items-center justify-center space-x-2 text-slate-200">
+                        <i class="fa-solid fa-laptop-code text-teal-400"></i>
+                        <span>View Technical Skills</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image Visuals -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-sm sm:max-w-md bg-gradient-to-tr from-primary/30 to-secondary/30 rounded-3xl p-1 shadow-2xl shadow-teal-500/15 group">
+                    <div class="w-full h-full bg-[#131b2e] rounded-[22px] overflow-hidden relative flex flex-col">
+                        <!-- Image Container (Clean view so embedded infographic details remain unobstructed) -->
+                        <div class="relative w-full aspect-[3/4] bg-slate-100 overflow-hidden">
+                            <img 
+                                src="krishna prajapati.png" 
+                                alt="Krishna Prajapati - Software Engineer" 
+                                onerror="this.onerror=null; this.src='https://placehold.co/600x800/0f172a/14b8a6?text=Krishna+Prajapati';"
+                                class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            />
+                        </div>
+
+                        <!-- Card Caption Info -->
+                        <div class="p-6 bg-[#0f172a] border-t border-slate-800/80">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-lg font-bold text-white">Krishna Prajapati</h4>
+                                <span class="text-xs text-teal-400 font-semibold tracking-wider uppercase">Software Engineer</span>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Expert in web development, system architecture, and building innovative software solutions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-[#090d16] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Side: Interactive Quick Stats Grid -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-6 order-2 lg:order-1">
+                    <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-700/40 hover:border-teal-500/30 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-code text-xl"></i>
+                        </div>
+                        <h4 class="text-3xl font-bold text-white mb-1">100+</h4>
+                        <p class="text-slate-400 text-sm">Projects Completed</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-700/40 hover:border-teal-500/30 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-microchip text-xl"></i>
+                        </div>
+                        <h4 class="text-3xl font-bold text-white mb-1">10+</h4>
+                        <p class="text-slate-400 text-sm">Technologies & Tools</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-700/40 hover:border-teal-500/30 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                        <h4 class="text-3xl font-bold text-white mb-1">B.Tech</h4>
+                        <p class="text-slate-400 text-sm">Computer Science & Engineering</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-800/40 border border-slate-700/40 hover:border-teal-500/30 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-award text-xl"></i>
+                        </div>
+                        <h4 class="text-3xl font-bold text-white mb-1">8.40</h4>
+                        <p class="text-slate-400 text-sm">CGPA</p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Text & Intro Content -->
+                <div class="lg:col-span-7 space-y-6 order-1 lg:order-2 text-center lg:text-left">
+                    <div class="inline-block">
+                        <span class="text-sm font-bold text-primary tracking-widest uppercase">My Profile</span>
+                        <div class="h-1 w-12 bg-primary mt-1 mx-auto lg:mx-0 rounded-full"></div>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">About Krishna Prajapati</h2>
+                    <p class="text-lg text-slate-300 leading-relaxed">
+                        I am a dedicated Software Engineer with a strong academic background in <strong>Computer Science and Engineering</strong>. My journey is fueled by a relentless curiosity for how things work under the hood and a passion for creating impactful software.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        Beyond coding, I am a problem solver at heart. Whether it's optimizing existing systems, designing new UI/UX workflows, or learning cutting-edge technologies, I strive for excellence in every line of code I write.
+                    </p>
+                    <div class="pt-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-6">
+                        <div class="flex items-center space-x-3 justify-center lg:justify-start">
+                            <span class="w-10 h-10 rounded-full bg-teal-500/10 flex items-center justify-center text-teal-400">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <span class="text-slate-300 font-medium">India</span>
+                        </div>
+                        <div class="flex items-center space-x-3 justify-center lg:justify-start">
+                            <span class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <i class="fa-solid fa-code-branch"></i>
+                            </span>
+                            <span class="text-slate-300 font-medium">Professional Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Skills Section -->
+    <section id="skills" class="py-24 bg-[#0f172a] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-sm font-bold text-primary tracking-widest uppercase">Expertise</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Technical Skills</h2>
+                <div class="h-1.5 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill 1: Web Dev -->
+                <div class="p-8 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-primary/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-400 mb-6">
+                        <i class="fa-solid fa-code text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Web Development</h3>
+                    <p class="text-slate-400 text-sm">Expertise in building responsive websites using HTML, CSS, JavaScript, and Tailwind CSS.</p>
+                </div>
+                <!-- Skill 2: Software Design -->
+                <div class="p-8 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-primary/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fa-solid fa-layer-group text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Software Design</h3>
+                    <p class="text-slate-400 text-sm">Focusing on clean UI/UX, database management, and system architecture logic.</p>
+                </div>
+                <!-- Skill 3: Problem Solving -->
+                <div class="p-8 rounded-2xl bg-slate-800/30 border border-slate-700/50 hover:border-primary/50 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6">
+                        <i class="fa-solid fa-terminal text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Problem Solving</h3>
+                    <p class="text-slate-400 text-sm">Strong foundation in algorithms, debugging, and optimizing software performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Projects Section -->
+    <section id="achievements" class="py-24 bg-[#090d16] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-sm font-bold text-primary tracking-widest uppercase">My Work</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Featured Software Projects</h2>
+                <div class="h-1.5 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1: Aura Routine (New Live Project) -->
+                <a href="https://krishnatech-lab.github.io/aura-routine/" target="_blank" rel="noopener noreferrer" class="group block bg-slate-800/30 hover:bg-slate-800/60 rounded-3xl p-8 border border-slate-700/50 hover:border-teal-500/50 transition-all duration-300 shadow-lg hover:shadow-teal-500/10 hover:-translate-y-1">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/25 flex items-center justify-center text-teal-400 text-xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 text-teal-300 border border-teal-500/25 group-hover:bg-teal-500 group-hover:text-white transition-colors">
+                            <span>Live Demo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-teal-300 transition-colors mb-2">Aura Routine — Daily Habit & Productivity Tracker</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                        A modern, interactive daily routine and habit-tracking web application designed to help users organize schedules, maintain consistency, and monitor daily wellness & productivity goals with a clean, responsive UI.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-slate-700/40">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700/70">HTML5</span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700/70">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700/70">JavaScript</span>
+                        </div>
+                        <span class="text-teal-400 text-xs font-bold uppercase tracking-widest">Web App</span>
+                    </div>
+                </a>
+
+                <!-- Project 2: Nutri Life (New Live Project) -->
+                <a href="https://krishnatech-lab.github.io/nutri-life/" target="_blank" rel="noopener noreferrer" class="group block bg-slate-800/30 hover:bg-slate-800/60 rounded-3xl p-8 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1">
+                    <div class="flex items-start justify-between gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 text-xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                            <span>Live Demo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors mb-2">Nutri Life — Smart Nutrition & Diet Planner</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-5">
+                        A comprehensive health and nutrition web platform offering smart diet planning, calorie and macro insights, and healthy lifestyle guidance tailored for everyday fitness and balanced living.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-4 border-t border-slate-700/40">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700/70">HTML5</span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700/70">CSS3</span>
+                            <span class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-900/90 text-slate-300 border border-slate-700/70">JavaScript</span>
+                        </div>
+                        <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest">Health & Wellness</span>
+                    </div>
+                </a>
+
+                <!-- Project 3 (Existing) -->
+                <div class="bg-slate-800/30 rounded-3xl p-8 border border-slate-700/50 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 text-xl mb-4">
+                            <i class="fa-solid fa-building-user"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Rental Management System</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-5">A comprehensive software built with HTML and JavaScript to manage room rentals, electricity calculations, and payments.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-700/40 flex items-center justify-between">
+                        <span class="text-teal-400 text-xs font-bold uppercase tracking-widest">Web Application</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 (Existing) -->
+                <div class="bg-slate-800/30 rounded-3xl p-8 border border-slate-700/50 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center text-indigo-400 text-xl mb-4">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Custom Figurine Design</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-5">Technical design and 3D wireframing for commercialized 1/7 scale figurines, focusing on structural integrity.</p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-700/40 flex items-center justify-between">
+                        <span class="text-indigo-400 text-xs font-bold uppercase tracking-widest">3D Modeling</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- NEW PROFESSIONAL CERTIFICATIONS SECTION (ADDED CLEANLY)   -->
+    <!-- ========================================================= -->
+    <section id="certifications" class="py-24 bg-[#0b1120] relative overflow-hidden border-t border-slate-800/60">
+        <!-- Ambient Glow -->
+        <div class="absolute top-20 right-10 w-80 h-80 bg-teal-500/10 rounded-full filter blur-[110px] pointer-events-none"></div>
+        <div class="absolute bottom-20 left-10 w-80 h-80 bg-indigo-500/10 rounded-full filter blur-[110px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/25 text-xs font-semibold text-teal-400 uppercase tracking-widest">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>Verified Credentials</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Certifications & Achievements</h2>
+                <div class="h-1.5 w-20 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full"></div>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Industry-recognized certifications in Artificial Intelligence, Cloud, Information Technology, Business Communication, and National Skilling Initiatives.
+                </p>
+            </div>
+
+            <!-- Interactive Category Filter Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12" id="cert-filters">
+                <button data-filter="all" class="filter-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-teal-500/20 transition-all">
+                    All Certificates (13)
+                </button>
+                <button data-filter="ai-tech" class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-slate-800/70 text-slate-300 hover:text-white border border-slate-700/60 hover:border-teal-500/40 transition-all">
+                    AI & IT Tech (8)
+                </button>
+                <button data-filter="business-design" class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-slate-800/70 text-slate-300 hover:text-white border border-slate-700/60 hover:border-teal-500/40 transition-all">
+                    Business & Design (3)
+                </button>
+                <button data-filter="govt-skilling" class="filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-slate-800/70 text-slate-300 hover:text-white border border-slate-700/60 hover:border-teal-500/40 transition-all">
+                    Govt. & Skilling (2)
+                </button>
+            </div>
+
+            <!-- Certificates Grid -->
+            <div id="cert-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Cards dynamically injected via JS for clean modal inspection -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Inspection Modal -->
+    <div id="cert-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-300">
+        <div class="relative w-full max-w-2xl bg-[#131b2e] border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden animate-[fadeIn_0.2s_ease-out]">
+            <!-- Top Accent Bar -->
+            <div id="modal-accent-bar" class="h-2 w-full bg-gradient-to-r from-primary to-secondary"></div>
+            
+            <div class="p-6 sm:p-8">
+                <!-- Modal Header -->
+                <div class="flex items-start justify-between gap-4 mb-6">
+                    <div class="flex items-center gap-3.5">
+                        <div id="modal-icon-box" class="w-12 h-12 rounded-2xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center text-teal-400 text-xl shrink-0">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <span id="modal-issuer" class="text-xs font-bold uppercase tracking-wider text-teal-400">Issuer Name</span>
+                            <h3 id="modal-title" class="text-xl sm:text-2xl font-extrabold text-white mt-0.5">Certificate Title</h3>
+                        </div>
+                    </div>
+                    <button id="close-cert-modal" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors shrink-0" aria-label="Close modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Credential Metadata Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6 bg-slate-900/80 border border-slate-800 rounded-2xl p-4">
+                    <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Recipient</p>
+                        <p class="text-sm font-bold text-slate-200 mt-0.5">Krishna Prajapati</p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Date / Score / Grade</p>
+                        <p id="modal-date" class="text-sm font-bold text-slate-200 mt-0.5">—</p>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <p class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Credential ID / Serial No.</p>
+                        <p id="modal-serial" class="text-xs sm:text-sm font-mono text-teal-300 mt-0.5 break-all">—</p>
+                    </div>
+                </div>
+
+                <!-- Description & Skills -->
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Course & Achievement Summary</h4>
+                        <p id="modal-desc" class="text-sm text-slate-300 leading-relaxed"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Verified Competencies</h4>
+                        <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="mt-8 pt-5 border-t border-slate-800 flex items-center justify-between">
+                    <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Verified Credential</span>
+                    </span>
+                    <button id="modal-done-btn" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-white text-sm font-semibold hover:opacity-90 transition-opacity">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Me Section -->
+    <section id="contact" class="py-24 bg-[#0f172a] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-sm font-bold text-primary tracking-widest uppercase">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Contact Me</h2>
+                <div class="h-1.5 w-20 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="max-w-2xl mx-auto bg-[#131b2e] rounded-3xl p-6 sm:p-10 border border-slate-800/80 shadow-xl">
+                <form id="contactForm" class="space-y-6">
+                    <div class="space-y-2">
+                        <label for="form-name" class="text-sm font-semibold text-slate-300">Your Name</label>
+                        <input type="text" id="form-name" required class="w-full px-4 py-3.5 bg-slate-900 border border-slate-800 focus:border-teal-500 focus:outline-none rounded-xl text-slate-200 text-sm transition-colors" placeholder="Your Name">
+                    </div>
+                    <div class="space-y-2">
+                        <label for="form-message" class="text-sm font-semibold text-slate-300">Your Message</label>
+                        <textarea id="form-message" rows="4" required class="w-full px-4 py-3.5 bg-slate-900 border border-slate-800 focus:border-teal-500 focus:outline-none rounded-xl text-slate-200 text-sm transition-colors resize-none" placeholder="How can I help you?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-bold hover:opacity-95 transition-opacity shadow-lg shadow-teal-500/20">
+                        Submit Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b0f19] border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
+            &copy; 2026 Krishna Prajapati. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Complete Verified Certificates Data
+        const certificatesData = [
+            {
+                id: 1,
+                title: "Certificate in Information Technology (CIT)",
+                issuer: "ITCS Edu Document Verification System",
+                date: "22 April 2026 • Grade: A+ (6 Months)",
+                serial: "Serial No: 8847 | Student ID: 225999",
+                category: "ai-tech",
+                badge: "Grade A+",
+                icon: "fa-laptop-code",
+                accent: "from-emerald-400 to-teal-600",
+                iconColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25",
+                summary: "Completed an intensive 6-month program in Information Technology with an A+ Grade, covering Windows OS fundamentals, complete Office Automation, Desktop Publishing, and hardware/PC troubleshooting.",
+                skills: ["Windows OS", "MS Office Suite", "Photoshop & CorelDraw", "PC Troubleshooting", "Internet & Outlook"]
+            },
+            {
+                id: 2,
+                title: "Introduction to Generative AI Studio",
+                issuer: "Google Cloud & Simplilearn SkillUp",
+                date: "31 August 2025",
+                serial: "Certificate Code: 8886853",
+                category: "ai-tech",
+                badge: "Google Cloud",
+                icon: "fa-wand-magic-sparkles",
+                accent: "from-blue-400 to-indigo-600",
+                iconColor: "text-blue-400 bg-blue-500/10 border-blue-500/25",
+                summary: "Successfully completed Google Cloud's Generative AI Studio training via Simplilearn SkillUp, mastering prompt engineering, foundation model workflows, and generative AI prototyping.",
+                skills: ["Generative AI", "Google Cloud AI", "Prompt Design", "LLM Studio"]
+            },
+            {
+                id: 3,
+                title: "AI for Beginners",
+                issuer: "HP LIFE (HP Foundation)",
+                date: "14 April 2026",
+                serial: "9221e1ab-3a2a-45d7-a03e-62d3721fa923",
+                category: "ai-tech",
+                badge: "HP LIFE",
+                icon: "fa-brain",
+                accent: "from-cyan-400 to-blue-600",
+                iconColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/25",
+                summary: "Gained foundational knowledge of Artificial Intelligence impact on modern technology, core AI concepts, data-driven business automation, and ethical AI governance.",
+                skills: ["Artificial Intelligence", "Data Strategy", "Business AI", "AI Ethics"]
+            },
+            {
+                id: 4,
+                title: "Basic Computer Course",
+                issuer: "BasicComputerCourse.in",
+                date: "Score: 42 / 50 (84%)",
+                serial: "Verified Digital Assessment Credential",
+                category: "ai-tech",
+                badge: "Score: 42/50",
+                icon: "fa-desktop",
+                accent: "from-teal-400 to-emerald-600",
+                iconColor: "text-teal-400 bg-teal-500/10 border-teal-500/25",
+                summary: "Certified proficiency in core computer operations, file systems, productivity software, and essential digital literacy with an 84% assessment score.",
+                skills: ["Computer Fundamentals", "Digital Literacy", "System Operations"]
+            },
+            {
+                id: 5,
+                title: "Business Communications",
+                issuer: "HP LIFE (HP Foundation)",
+                date: "02 April 2026",
+                serial: "6ec6a989-445b-4e91-a638-9160099bc0c2",
+                category: "business-design",
+                badge: "HP LIFE",
+                icon: "fa-comments",
+                accent: "from-indigo-400 to-purple-600",
+                iconColor: "text-indigo-400 bg-indigo-500/10 border-indigo-500/25",
+                summary: "Mastered characteristics of effective professional communication, target audience analysis, and strategic channel selection for clear stakeholder messaging.",
+                skills: ["Professional Communication", "Audience Analysis", "Corporate Messaging"]
+            },
+            {
+                id: 6,
+                title: "Effective Presentations",
+                issuer: "HP LIFE (HP Foundation)",
+                date: "02 April 2026",
+                serial: "bf9b2187-9afd-4007-bd03-cb685789c0c6",
+                category: "business-design",
+                badge: "HP LIFE",
+                icon: "fa-person-chalkboard",
+                accent: "from-purple-400 to-pink-600",
+                iconColor: "text-purple-400 bg-purple-500/10 border-purple-500/25",
+                summary: "Learned structured storytelling, persuasive delivery techniques, and audience-tailored visual slide design for high-impact technical and business presentations.",
+                skills: ["Public Speaking", "Visual Storytelling", "Persuasive Pitching"]
+            },
+            {
+                id: 7,
+                title: "Graphic Designing Course",
+                issuer: "GraphicDesigningCourse.in",
+                date: "Score: 38 / 50 (76%)",
+                serial: "Verified Digital Assessment Credential",
+                category: "business-design",
+                badge: "Score: 38/50",
+                icon: "fa-pen-nib",
+                accent: "from-pink-400 to-rose-600",
+                iconColor: "text-pink-400 bg-pink-500/10 border-pink-500/25",
+                summary: "Completed certified training in visual composition, typography, digital branding, and creative graphic layout principles.",
+                skills: ["Visual Design", "Typography", "Layout & Branding", "Creative Assets"]
+            },
+            {
+                id: 8,
+                title: "Kisan Drone Operator (NSQF Level 4)",
+                issuer: "Skill India Digital Hub & ASCI",
+                date: "30 October 2025",
+                serial: "QP: AGR/Q1006 | NSQF Level: 4",
+                category: "govt-skilling",
+                badge: "Skill India",
+                icon: "fa-helicopter",
+                accent: "from-amber-400 to-orange-600",
+                iconColor: "text-amber-400 bg-amber-500/10 border-amber-500/25",
+                summary: "Certified by Agriculture Skill Council of India (ASCI) and NSDC under Skill India Digital Hub for drone operation fundamentals aligned with NSQF Level 4 standards.",
+                skills: ["UAV / Drone Tech", "NSQF Level 4", "Skill India", "Agri-Tech Operations"]
+            },
+            {
+                id: 9,
+                title: "Pariksha Pe Charcha 2026 (9th Edition)",
+                issuer: "Ministry of Education & NCERT (MyGov)",
+                date: "2026 Edition",
+                serial: "Official Govt. of India Participation Certificate",
+                category: "govt-skilling",
+                badge: "Govt. of India",
+                icon: "fa-landmark",
+                accent: "from-orange-400 to-amber-500",
+                iconColor: "text-orange-400 bg-orange-500/10 border-orange-500/25",
+                summary: "Recognized by the Ministry of Education, NCERT, and MyGov for active participation and contribution to the 9th Edition of Pariksha Pe Charcha 2026.",
+                skills: ["Leadership", "National Initiative", "Student Mentorship"]
+            },
+            {
+                id: 10,
+                title: "Microsoft Copilot: The Art of Prompt Writing",
+                issuer: "LinkedIn Learning",
+                date: "01 April 2026 • 44 Minutes",
+                serial: "c6bec3792012357e89e9a88c4730ce5097bf2cfc3f21763f617867d515922906",
+                category: "ai-tech",
+                badge: "LinkedIn Learning",
+                icon: "fa-robot",
+                accent: "from-sky-400 to-blue-600",
+                iconColor: "text-sky-400 bg-sky-500/10 border-sky-500/25",
+                summary: "Completed LinkedIn Learning specialization on crafting structured, effective prompts for Microsoft Copilot to streamline workflows and boost daily AI productivity.",
+                skills: ["AI Prompting", "Microsoft Copilot", "AI Productivity"]
+            },
+            {
+                id: 11,
+                title: "What Is Generative AI?",
+                issuer: "LinkedIn Learning",
+                date: "01 April 2026 • 1 Hour 3 Minutes",
+                serial: "bf60dlclae7c1727299afa6ee53464d78bf27c9767569cc71a5c82f038dd8a28",
+                category: "ai-tech",
+                badge: "LinkedIn Learning",
+                icon: "fa-microchip",
+                accent: "from-blue-500 to-indigo-600",
+                iconColor: "text-blue-400 bg-blue-500/10 border-blue-500/25",
+                summary: "Mastered foundational concepts of Generative AI, neural model capabilities, generative tools, and practical real-world AI implementation strategies.",
+                skills: ["Generative AI Tools", "Artificial Intelligence (AI)", "Generative AI"]
+            },
+            {
+                id: 12,
+                title: "What Is Generative AI? (NASBA CPE Accredited)",
+                issuer: "National Association of State Boards of Accountancy (NASBA)",
+                date: "01 April 2026 • 2.00 CPE Credits",
+                serial: "Registry ID: #140940 | ID: 8794836993687948880558aa78bd872169e65b17ea68474bded544a3cda75eb8",
+                category: "ai-tech",
+                badge: "NASBA CPE",
+                icon: "fa-award",
+                accent: "from-indigo-400 to-blue-700",
+                iconColor: "text-indigo-400 bg-indigo-500/10 border-indigo-500/25",
+                summary: "Awarded 2.00 Continuing Professional Education (CPE) credits in Information Technology via QAS Self Study under the National Registry of CPE Sponsors.",
+                skills: ["Information Technology", "Generative AI", "CPE Accredited", "QAS Self Study"]
+            },
+            {
+                id: 13,
+                title: "Introduction to HTML",
+                issuer: "Simplilearn SkillUp",
+                date: "17 September 2025",
+                serial: "Certificate Code: 8995610",
+                category: "ai-tech",
+                badge: "Simplilearn",
+                icon: "fa-html5",
+                accent: "from-orange-500 to-red-600",
+                iconColor: "text-orange-400 bg-orange-500/10 border-orange-500/25",
+                summary: "Successfully completed Simplilearn SkillUp's core web development certification covering semantic HTML5 structure, forms, multimedia, and modern web standards.",
+                skills: ["HTML5", "Web Structure", "Frontend Fundamentals"]
+            }
+        ];
+
+        const certGrid = document.getElementById('cert-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        // Render Certificates Cards
+        function renderCertificates(filter = 'all') {
+            certGrid.innerHTML = '';
+            const filtered = filter === 'all' 
+                ? certificatesData 
+                : certificatesData.filter(c => c.category === filter);
+
+            filtered.forEach(cert => {
+                const card = document.createElement('div');
+                card.className = 'cert-card group relative bg-slate-800/35 hover:bg-slate-800/60 border border-slate-700/50 hover:border-teal-500/40 rounded-3xl p-7 flex flex-col justify-between shadow-xl';
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Top Row: Icon & Badge -->
+                        <div class="flex items-center justify-between gap-3 mb-5">
+                            <div class="w-12 h-12 rounded-2xl border ${cert.iconColor} flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid ${cert.icon}"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-900/90 text-teal-300 border border-slate-700/80">
+                                ${cert.badge}
+                            </span>
+                        </div>
+
+                        <!-- Issuer & Title -->
+                        <p class="text-xs font-semibold text-teal-400 uppercase tracking-wider mb-1">${cert.issuer}</p>
+                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-teal-300 transition-colors leading-snug mb-3">
+                            ${cert.title}
+                        </h3>
+
+                        <!-- Short Summary -->
+                        <p class="text-slate-400 text-sm leading-relaxed line-clamp-3 mb-5">
+                            ${cert.summary}
+                        </p>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="pt-4 border-t border-slate-700/50 flex items-center justify-between gap-2">
+                        <span class="text-xs text-slate-400 font-medium flex items-center gap-1.5">
+                            <i class="fa-regular fa-calendar text-teal-400"></i>
+                            <span>${cert.date.split('•')[0].trim()}</span>
+                        </span>
+                        <button onclick="openCertModal(${cert.id})" class="inline-flex items-center gap-1.5 text-xs font-bold text-teal-400 hover:text-white bg-teal-500/10 hover:bg-teal-500/20 px-3.5 py-2 rounded-xl transition-all">
+                            <span>View Credential</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+                certGrid.appendChild(card);
+            });
+        }
+
+        // Filter Button Click Handlers
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-gradient-to-r', 'from-primary', 'to-secondary', 'text-white', 'shadow-lg', 'shadow-teal-500/20');
+                    b.classList.add('bg-slate-800/70', 'text-slate-300');
+                });
+                btn.classList.add('active', 'bg-gradient-to-r', 'from-primary', 'to-secondary', 'text-white', 'shadow-lg', 'shadow-teal-500/20');
+                btn.classList.remove('bg-slate-800/70', 'text-slate-300');
+
+                renderCertificates(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // Modal Logic
+        const certModal = document.getElementById('cert-modal');
+        const closeCertModalBtn = document.getElementById('close-cert-modal');
+        const modalDoneBtn = document.getElementById('modal-done-btn');
+
+        function openCertModal(id) {
+            const cert = certificatesData.find(c => c.id === id);
+            if (!cert) return;
+
+            document.getElementById('modal-accent-bar').className = `h-2 w-full bg-gradient-to-r ${cert.accent}`;
+            document.getElementById('modal-icon-box').className = `w-12 h-12 rounded-2xl border ${cert.iconColor} flex items-center justify-center text-xl shrink-0`;
+            document.getElementById('modal-icon-box').innerHTML = `<i class="fa-solid ${cert.icon}"></i>`;
+            document.getElementById('modal-issuer').textContent = cert.issuer;
+            document.getElementById('modal-title').textContent = cert.title;
+            document.getElementById('modal-date').textContent = cert.date;
+            document.getElementById('modal-serial').textContent = cert.serial;
+            document.getElementById('modal-desc').textContent = cert.summary;
+
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = cert.skills.map(skill => 
+                `<span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-800 text-teal-300 border border-slate-700">${skill}</span>`
+            ).join('');
+
+            certModal.classList.remove('hidden');
+            certModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertModal() {
+            certModal.classList.add('hidden');
+            certModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        closeCertModalBtn.addEventListener('click', closeCertModal);
+        modalDoneBtn.addEventListener('click', closeCertModal);
+        certModal.addEventListener('click', (e) => {
+            if (e.target === certModal) closeCertModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !certModal.classList.contains('hidden')) {
+                closeCertModal();
+            }
+        });
+
+        // Initial Render
+        renderCertificates('all');
+    </script>
+    
+</body>
+</html>
